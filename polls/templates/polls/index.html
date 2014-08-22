@@ -1,0 +1,31 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+<div class="bs-component">
+	<div style="text-align:center;" class="jumbotron">
+		<h1>It's a Jodything</h1>
+		<p>Just some text to see how text would look here.</p>
+
+	</div>
+</div>
+
+{% if latest_question_list %}
+	<ul style="list-style-type:none; text-align:center;">
+	
+		<div class="col-lg-4">
+			{% for question in latest_question_list %}
+			<div class="bs-component">
+				<div class="list-group">	
+					<li>
+						<a class="list-group-item" href="{% url 'polls:detail' question.id %}">{{ question.question_text }} </a>
+					</li>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
+	</ul>
+
+{% else %}
+	<p>No polls are available.</p>
+{% endif %}
